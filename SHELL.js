@@ -4,16 +4,18 @@ Refactored shell to use INPUT.js for interactive browser input.
 Uses the IO instance exported from COMS.js so COM apps and the shell share the same I/O.
 To be loaded in index.html and instantiated with: new Shell('canvas_id')
 */
-
+import IO from './IO.js';
 import Input from './INPUT.js';
 import { comManager, IO as comIO, FS, AUX } from './COMS.js';
 import ANSI from './ANSI.js';
 
 class Shell {
     constructor(canvasId) {
-        // Use the shared IO from COMS so COM apps output to the same terminal
-        this.io = comIO;
         const el = document.getElementById(canvasId);
+        if (!el) throw new Error(`Shell: element "${canvasId}" not found`);
+
+        // Use the shared IO from COMS so COM apps output to the same terminal
+        this.io = new IO({ element: el })
         if (!el) throw new Error('Shell: element "' + canvasId + '" not found');
         const container = comIO.attachToElement ? (this.io.attachToElement(el), this.io.element) : el;
 
@@ -27,7 +29,6 @@ class Shell {
     }
 
     init() {
-        console.log(this.io);
         this.running = true;
         this.io.writeln('Welcome to WebShell! Type HELP for commands.');
         this._createInputLine();
