@@ -1,33 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebShell Terminal</title>
-  <style>
-    body {
-      margin: 0;
-      background-color: #000;
-      color: #AAA;
-      font-family: monospace;
-    }
-    #terminal {
-      width: 100%;
-      height: 100vh;
-      padding: 10px;
-      box-sizing: border-box;
-      overflow-y: auto;
-      white-space: pre-wrap;
-    }
-  </style>
-</head>
-<body>
-  <div id="terminal"></div>
 
-  <script type="module">
-    import Shell from './SHELL.js';
-    // Create shell attached to terminal div
-    const shell = new Shell('terminal');
-  </script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebShell Terminal</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            color: #AAA;
+            font-family: monospace;
+        }
+
+        #terminal {
+            width: 100%;
+            height: 100vh;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .terminal-line {
+            white-space: pre;
+            font-family: monospace;
+        }
+
+        .terminal-input-line {
+            white-space: pre;
+        }
+
+        .input-caret {
+            animation: blink 1s steps(1) infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                visibility: hidden
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="terminal"></div>
+
+    <script type="module">
+        import Shell from './SHELL.js';
+        const shell = new Shell('terminal');
+    </script>
 </body>
+
 </html>
