@@ -10,6 +10,7 @@ import COM from './COM.js';
 import IO from './IO.js';
 import ANSI from './ANSI.js';
 import AUX from './AUX.js';
+import FS from './FS.js';
 
 // create global COM manager for all apps
 const io = new IO();
@@ -25,7 +26,7 @@ comManager.registerApp('CLS', async ({ io }) => {
   io.clearScreen();
 });
 
-export { comManager, fs, ansi as ANSI, AUX };
+export { comManager, FS, ansi as ANSI, AUX };
 export default comManager;
 
 /*
