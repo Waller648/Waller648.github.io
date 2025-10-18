@@ -15,8 +15,7 @@ class Shell {
         this.io = comIO;
         const el = document.getElementById(canvasId);
         if (!el) throw new Error('Shell: element "' + canvasId + '" not found');
-        const container = comIO.attachToElement ? (this.io.attachToElement(el), this.io.element) : el;
-
+        const container = comIO.attachToElement ? (this.io.attachToElement(el), this.io.element) : e
 
         this.promptStr = '> ';
         this.input = null;      // instance of Input for the active editable line
@@ -28,6 +27,7 @@ class Shell {
     }
 
     init() {
+        console.log(this.io);
         this.running = true;
         this.io.writeln('Welcome to WebShell! Type HELP for commands.');
         this._createInputLine();
