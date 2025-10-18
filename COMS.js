@@ -26,7 +26,7 @@ comManager.registerApp('CLS', async ({ io }) => {
   io.clearScreen();
 });
 
-export { comManager, FS, ansi as ANSI, AUX };
+export { comManager, FS, IO, ansi as ANSI, AUX };
 export default comManager;
 
 /*

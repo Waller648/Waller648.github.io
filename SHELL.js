@@ -6,7 +6,7 @@ To be loaded in index.html and instantiated with: new Shell('canvas_id')
 */
 
 import Input from './INPUT.js';
-import { comManager, io as comIO, fs, ANSI, AUX } from './COMS.js';
+import { comManager, IO as comIO, fs, ANSI, AUX } from './COMS.js';
 
 class Shell {
   constructor(canvasId) {
