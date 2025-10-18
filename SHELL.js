@@ -7,7 +7,7 @@ To be loaded in index.html and instantiated with: new Shell('canvas_id')
 
 import Input from './INPUT.js';
 import { comManager, IO as comIO, FS, AUX } from './COMS.js';
-import ANSI from './ANSI.js;'
+import ANSI from './ANSI.js';
 
 class Shell {
   constructor(canvasId) {
