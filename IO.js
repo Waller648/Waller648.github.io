@@ -50,7 +50,7 @@ class IO extends SimpleEventEmitter {
     this.lineQueue = []; // completed lines awaiting consumption
     this.readResolvers = []; // pending readLine resolvers
     this.history = opts.history || null;
-    this.element = null; // DOM element to render output
+     this.element = opts.element || null; // <--- store element here
     this.fdTable = Object.create(null); // pseudo file descriptor table
     this.nextFD = 3; // 0/1/2 reserved semantics
     this.closed = false;
