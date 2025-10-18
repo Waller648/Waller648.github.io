@@ -9,7 +9,7 @@ Note: You requested to stop here — implementation is basic placeholder.
 import COM from './COM.js';
 import IO from './IO.js';
 import ANSI from './ANSI.js';
-import AUX from './AUX.js';
+import AUX from './AUXILIARY.js';
 import FS from './FS.js';
 
 // create global COM manager for all apps
