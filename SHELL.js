@@ -44,12 +44,10 @@ class Shell {
         // Create new input attached to the same IO element
         this.input = new Input(this.io, {
             prompt: this.promptStr,
-            onSubmit: (line) => this._onSubmit(line),
+            onSubmit: line => this._onSubmit(line),
             onHistoryPrev: () => this._historyUp(),
             onHistoryNext: () => this._historyDown(),
         });
-
-        // focus the input so it receives keyboard events
         this.input.start();
     }
 
