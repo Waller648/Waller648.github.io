@@ -1,35 +1,60 @@
-/*
-COMS.js
-Container for COM-style applications.
-Provides an interface to register and load multiple apps.
-
-Note: You requested to stop here — implementation is basic placeholder.
-*/
-
-import COM from './COM.js';
-import IO from './IO.js';
-import ANSI from './ANSI.js';
-import AUX from './AUXILIARY.js';
+// COMS.js
 import FS from './FS.js';
+import AUX from './AUXILIARY.js';
 
-// create global COM manager for all apps
-const io = new IO();
-const comManager = new COM(io);
-const ansi = new ANSI(io); // <-- instance of ANSI
+class ComManager {
+  constructor() {
+    this.apps = {};
+    this.registerDefaultApps();
+  }
 
-// Example registration (actual apps would be loaded here)
-comManager.registerApp('ECHO', async ({ argv, io, AUX, ANSI }) => {
-  io.writeln(argv.join(' '));
-});
+  registerDefaultApps() {
+    // mock DOS commands
+    this.apps['ECHO'] = async (args, io) => {
+      const text = args.join(' ');
+      io.writeln(text);
+      return true;
+    };
 
-comManager.registerApp('CLS', async ({ io }) => {
-  io.clearScreen();
-});
+    this.apps['CLS'] = async (args, io) => {
+      io.clearScreen();
+      return true;
+    };
 
-export { comManager, FS, IO, ansi as ANSI, AUX };
-export default comManager;
+    this.apps['HELP'] = async (args, io) => {
+      io.writeln('Available commands: ' + Object.keys(this.apps).join(', '));
+      return true;
+    };
 
-/*
-Further COM apps should be added using comManager.registerApp(name, fn);
-You can integrate COMS_HEADER.json to automate app metadata.
-*/
+    // Add more commands here
+  }
+
+  listApps() {
+    return Object.keys(this.apps);
+  }
+
+  async run(cmd, args, io) {
+    const upperCmd = cmd.toUpperCase();
+    const app = this.apps[upperCmd];
+    if (!app) return false; // unknown command
+
+    try {
+      // pass the shared IO instance to the command
+      await app(args, io);
+      return true;
+    } catch (e) {
+      io.writeln('Error running command: ' + e.message);
+      return true;
+    }
+  }
+
+  registerApp(name, fn) {
+    this.apps[name.toUpperCase()] = fn;
+  }
+}
+
+// Export single instance
+export const comManager = new ComManager();
+
+// Export FS and AUX if you want
+export { FS, AUX };
