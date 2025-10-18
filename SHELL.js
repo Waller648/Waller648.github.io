@@ -15,7 +15,7 @@ class Shell {
         this.io = comIO;
         const el = document.getElementById(canvasId);
         if (!el) throw new Error('Shell: element "' + canvasId + '" not found');
-        const container = comIO.attachToElement ? (this.io.attachToElement(el), this.io.element) : e
+        const container = comIO.attachToElement ? (this.io.attachToElement(el), this.io.element) : el;
 
         this.promptStr = '> ';
         this.input = null;      // instance of Input for the active editable line
