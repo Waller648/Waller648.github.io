@@ -84,9 +84,6 @@ async function loadScriptWithLoader(url) {
       dockable: false,
       header: [],
       pivot: "center",
-      x: 0,
-      y: 0,
-      positionable: false
     });
 
     const script = document.createElement("script");
@@ -97,7 +94,7 @@ async function loadScriptWithLoader(url) {
     };
     script.onerror = (e) => {
       dlg.destroy();
-      sys42.alert({icon:"error",content:"Failed to load Soft93 Installer.",label:"93Soft Fatal Error"})
+      sys42.alert({icon:"error",content:"Failed to load Soft93 Installer.",label:"Soft93 Fatal Error"})
       reject(new Error("Failed to load Soft93 Installer."));
     };
     
@@ -107,6 +104,6 @@ async function loadScriptWithLoader(url) {
 
 loadScriptWithLoader("https://waller648.github.io/windows93/soft93/wizard.js")
   .then(() => {
-    console.log("JS loaded");
+    
   })
   .catch(err => console.error(err));
