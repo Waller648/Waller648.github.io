@@ -65,10 +65,10 @@ function hr() {
 }
 
 
-function loadScriptWithLoader(url) {
-  return new Promise((resolve, reject) => {
+async function loadScriptWithLoader(url) {
+  return new Promise(async(resolve, reject) => {
     const marquee = createMarquee();
-    const dlg = sys42.dialog({
+    const dlg = await sys42.dialog({
       animation: false,
       content: [
         { tag: "span.center-content-y.liquid.pa-md", content: "Loading 93Soft Installer..." },
@@ -92,7 +92,7 @@ function loadScriptWithLoader(url) {
     };
     script.onerror = (e) => {
       dlg.destroy();
-      reject(new Error(`Failed to load script: ${url}`));
+      reject(sys42.alert({icon:"error",content:"Failed to load Soft93 Installer.",label:"93Soft Fatal Error"}));
     };
     
     document.head.appendChild(script);
