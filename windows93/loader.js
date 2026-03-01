@@ -105,7 +105,7 @@ async function loadScriptWithLoader(url) {
   });
 }
 
-loadScriptWithLoader("waller648.github.io/windows93/93soft/wizard.js")
+loadScriptWithLoader("waller648.github.io/windows93/soft93/wizard.js")
   .then(() => {
     console.log("JS loaded");
   })
