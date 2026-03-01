@@ -1,3 +1,30 @@
+function createMarquee() {
+  const container = document.createElement("div");
+  container.style.width = "100%";
+  container.style.height = "16px !important";
+  container.classList.add("inset");
+  container.style.backgroundColor = "#fff";
+  container.style.position = "relative";
+  container.style.overflow = "hidden";
+  const bar = document.createElement("div");
+  bar.style.width = "30%"; 
+  bar.style.height = "100%";
+  bar.style.backgroundColor = "var(--Hilight)";
+  bar.style.position = "absolute";
+  bar.style.left = "-50%";
+  container.appendChild(bar);
+  let pos = -0.5;
+  const speed = 0.02;
+  const animate = () => {
+    pos += speed;
+    if (pos > 1) pos = -0.5;
+    bar.style.left = `${pos * 100}%`;
+    requestAnimationFrame(animate);
+  };
+  requestAnimationFrame(animate);
+
+  return container;
+}
 function loadScriptWithLoader(url) {
   return new Promise((resolve, reject) => {
     const marquee = createMarquee();
