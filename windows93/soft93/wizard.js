@@ -83,17 +83,13 @@ async function installCore() {
 
   try {
     status.textContent = "Status: Downloading core...";
-
-    // fetch the real core.js from your GitHub repo
     const res = await fetch("https://waller648.github.io/windows93/soft93/core.js");
     if (!res.ok) throw new Error(`Failed to download core.js (${res.status})`);
     const code = await res.text();
 
     status.textContent = "Status: Writing files...";
-
-    // write to local FS
-    await sys42.fs.write(`/c/users/${sys42.env.USER}/pgmgr/core.js`, code);
-
+    await sys42.fs.write(`/c/users/${USER}/soft93/core.js`, code);
+    await sys42.fs.writeDir(`/c/users/${USER}/soft93/scripts`);
     status.textContent = "Status: Finalizing...";
     await new Promise(r => setTimeout(r, 500));
 
