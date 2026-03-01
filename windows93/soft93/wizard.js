@@ -8,10 +8,6 @@
   let step = STEP_HELLO;
   let installing = false;
   let dlg;
-
-  // ─────────────────────────
-  // Marquee
-  // ─────────────────────────
   function createMarquee() {
     return {
       tag: ".pgmgr-marquee",
@@ -37,8 +33,6 @@
       ]
     };
   }
-
-  // inject keyframes once
   if (!document.getElementById("pgmgr-marquee-style")) {
     const style = document.createElement("style");
     style.id = "pgmgr-marquee-style";
@@ -50,16 +44,12 @@
     `;
     document.head.appendChild(style);
   }
-
-  // ─────────────────────────
-  // Step text
-  // ─────────────────────────
   function getStepText() {
     if (step === STEP_HELLO) {
       return `Welcome to the Soft93.
 
-This wizard will install the Package Manager
-required to load Soft93 packages.
+This wizard will install the files
+required to run Soft93 scripts.
 
 Click Next to continue.`;
     }
