@@ -1,3 +1,4 @@
+// Soft93 installer.
 function createMarquee() {
   const container = document.createElement("div");
   container.style.width = "100%";
@@ -71,7 +72,7 @@ async function loadScriptWithLoader(url) {
     const dlg = await sys42.dialog({
       animation: false,
       content: [
-        { tag: "span.center-content-y.liquid.pa-md", content: "Loading 93Soft Installer..." },
+        { tag: "span.txt-center.liquid.pa-md", content: "Preparing to install..." },
         hr(),
         marquee
       ],
@@ -81,7 +82,11 @@ async function loadScriptWithLoader(url) {
       minimizable: false,
       maximizable: false,
       dockable: false,
-      header: []
+      header: [],
+      pivot: "center",
+      x: 0,
+      y: 0,
+      positionable: false
     });
 
     const script = document.createElement("script");
@@ -92,7 +97,8 @@ async function loadScriptWithLoader(url) {
     };
     script.onerror = (e) => {
       dlg.destroy();
-      reject(sys42.alert({icon:"error",content:"Failed to load Soft93 Installer.",label:"93Soft Fatal Error"}));
+      sys42.alert({icon:"error",content:"Failed to load Soft93 Installer.",label:"93Soft Fatal Error"})
+      reject(new Error("Failed to load Soft93 Installer."));
     };
     
     document.head.appendChild(script);
